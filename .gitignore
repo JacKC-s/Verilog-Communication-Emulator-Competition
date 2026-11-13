@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+# Waveform / dump files (all common simulator formats)
+# ---------------------------------------------------------------
+*.vcd
+*.evcd
+*.vcd.gz
+*.fst
+*.lxt
+*.lxt2
+*.lx2
+*.ghw
+*.wlf
+*.wlf.*
+*.vpd
+*.fsdb
+*.fsdb.gz
+*.shm
+*.trn
+*.dump
+*.awc
+*.sae
+*.sim
+*.wdb
+*.qwave
+*.bwave
+*.tab
+*.tbl
+
+# ---------------------------------------------------------------
+# Simulation build / output files
+# ---------------------------------------------------------------
+*.vvp
+*.out
+*.o
+*.so
+*.d
+simv
+simv.*
+csrc/
+xsim.dir/
+*.log
+*.jou
+*.pb
+*.stackdump
+obj_dir/
+__pycache__/
