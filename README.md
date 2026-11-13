@@ -97,6 +97,7 @@ push. The GDS flow uses the `ttihp27a` action with the `ihp-sg13cmos5l` PDK.
 
 ## Competition
 
+- [Project progress checklist](CHECKLIST.md) — parallel workstreams, milestones, and definition of done
 - [Jane Street protocol emulator ASIC competition](https://blog.janestreet.com/protocol-emulator-asic-competition/)
 - [Tiny Tapeout IHP Verilog template](https://github.com/TinyTapeout/ttihp-verilog-template)
 
