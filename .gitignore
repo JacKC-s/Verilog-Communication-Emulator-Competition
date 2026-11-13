@@ -60,3 +60,5 @@ xsim.dir/
 *.stackdump
 obj_dir/
 __pycache__/
+
+.zeron-verilog/

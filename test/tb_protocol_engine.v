@@ -7,22 +7,22 @@ module tb_protocol_engine;
     reg run;
 
     reg load_en;
-    reg [15:0] load_addr;
+    reg [7:0] load_addr;
     reg [15:0] load_data;
 
-    wire [15:0] pc;
+    wire [7:0] pc;
     wire [15:0] instruction;
     wire [3:0] opcode;
     wire [11:0] operand;
     wire advance;
     wire jump;
-    wire [11:0] jump_addr;
+    wire [7:0] jump_addr;
     wire pin0;
 
     initial clk = 0;
     always #5 clk = ~clk;
 
-    program_counter #(.WIDTH(16)) pc_inst (
+    program_counter #(.WIDTH(8)) pc_inst (
         .clk(clk),
         .rst_n(rst_n),
         .en(advance),
@@ -53,6 +53,7 @@ module tb_protocol_engine;
         .run(run),
         .opcode(opcode),
         .operand(operand),
+        .gpio_in(1'b0),
         .advance(advance),
         .jump(jump),
         .jump_addr(jump_addr),
@@ -60,7 +61,7 @@ module tb_protocol_engine;
     );
 
     task write_instruction;
-        input [15:0] addr;
+        input [7:0] addr;
         input [15:0] data;
         begin
             load_en = 1;
@@ -86,11 +87,11 @@ module tb_protocol_engine;
         load_data = 0;
 
         // Load the program
-        write_instruction(16'd0, 16'h1001);
-        write_instruction(16'd1, 16'h2014);
-        write_instruction(16'd2, 16'h1000);
-        write_instruction(16'd3, 16'h2014);
-        write_instruction(16'd4, 16'h3000);
+        write_instruction(8'd0, 16'h1001);
+        write_instruction(8'd1, 16'h2014);
+        write_instruction(8'd2, 16'h1000);
+        write_instruction(8'd3, 16'h2014);
+        write_instruction(8'd4, 16'h3000);
 
         // Start execution
         rst_n = 1;

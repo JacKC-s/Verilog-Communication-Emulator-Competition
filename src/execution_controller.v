@@ -10,10 +10,10 @@ module execution_controller (
 
     output wire advance,
     output wire jump,
-    output wire [11:0] jump_addr,
+    output wire [7:0] jump_addr,
 
     output reg pin0,
-    output wire sampled_bit
+    output reg sampled_bit
 );
 
     localparam [3:0] NOP  = 0;
@@ -26,7 +26,8 @@ module execution_controller (
     reg [11:0] wait_count;
     reg waiting;
 
-    assign jump_addr = operand;
+    // Combination logic
+    assign jump_addr = operand[7:0];
 
     assign jump = run && !waiting &&
                   ((opcode == JMP) || ((opcode == JMP_HIGH) && gpio_in));
@@ -34,13 +35,14 @@ module execution_controller (
     assign advance = run && (waiting ? (wait_count == 0)
                                      : !((opcode == WAIT) && (operand != 0)));
 
-    assign sampled_bit = ((opcode == READ) || (opcode == JMP_HIGH)) ? gpio_in : 1'b0;
 
+    // Sequential execution
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             waiting <= 0;
             wait_count <= 0;
             pin0 <= 0;
+            sampled_bit <= 0;
         end else if (run) begin
             if (waiting) begin
                 if (wait_count == 0) begin
@@ -55,6 +57,8 @@ module execution_controller (
                 case (opcode)
                     NOP: pin0 <= 0;
                     SET: pin0 <= operand[0];
+                    READ: sampled_bit <= gpio_in;
+                    JMP_HIGH: sampled_bit <= gpio_in;
                     default: pin0 <= pin0;
                 endcase
             end

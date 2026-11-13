@@ -50,7 +50,7 @@ module tt_um_jackc_protocol_emulator (
     wire [11:0] operand;
     wire        advance;
     wire        jump;
-    wire [11:0] jump_addr;
+    wire [7:0] jump_addr;
     wire        pin0;
     wire        sampled_bit;
 
@@ -73,7 +73,7 @@ module tt_um_jackc_protocol_emulator (
         .rst_n(rst_n),
         .en(advance),
         .jump(jump),
-        .jump_addr(jump_addr[7:0]),
+        .jump_addr(jump_addr),
         .pc(pc)
     );
 
@@ -117,6 +117,6 @@ module tt_um_jackc_protocol_emulator (
     assign uio_oe  = 8'h00;  // uio pins are host inputs
 
     // List all unused inputs to prevent warnings
-    wire _unused = &{ena, ui_in[7:4], sampled_bit, jump_addr[11:8], 1'b0};
+    wire _unused = &{ena, ui_in[7:4], sampled_bit, 1'b0};
 
 endmodule
