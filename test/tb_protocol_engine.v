@@ -47,7 +47,7 @@ module tb_protocol_engine;
         .operand(operand)
     );
 
-    execution_controller #(.DATA_WIDTH(16)) exec_ctrl_inst (
+    execution_controller exec_ctrl_inst (
         .clk(clk),
         .rst(~rst_n),
         .run(run),

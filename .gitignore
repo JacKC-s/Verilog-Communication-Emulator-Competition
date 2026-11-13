@@ -1,10 +1,26 @@
 # ---------------------------------------------------------------
+# Tiny Tapeout / build outputs
+# ---------------------------------------------------------------
+.DS_Store
+.idea
+runs/
+tt_submission/
+src/user_config.json
+src/config_merged.json
+test/sim_build/
+test/__pycache__/
+test/results.xml
+test/gate_level_netlist.v
+.venv/
+
+# ---------------------------------------------------------------
 # Waveform / dump files (all common simulator formats)
 # ---------------------------------------------------------------
 *.vcd
 *.evcd
 *.vcd.gz
 *.fst
+*.fst.hier
 *.lxt
 *.lxt2
 *.lx2
